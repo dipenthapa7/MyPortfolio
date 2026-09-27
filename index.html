@@ -1,42 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Dipen Thapa - Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dipen Thapa | Personal Portfolio</title>
 </head>
+
 <body>
 
-    <h1>Dipen Thapa</h1>
-    <hr>
+    <header>
+        <h1>Dipen Thapa</h1>
 
-    <h2>About Me</h2>
-    <p>Hello! I am a student currently completing my academic coursework at IAU. I am passionate about programming, database management, and software development.</p>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <h2>My Skills</h2>
-    <ul>
-        <li>Python</li>
-        <li>C Programming</li>
-        <li>SQL & Relational Databases (MySQL)</li>
-        <li>HTML & Basic Web Development</li>
-    </ul>
+    <main>
 
-    <h2>My Projects</h2>
-    <ul>
-        <li>
-            <strong>Database Practical:</strong> 
-            <p>Designed Entity-Relationship diagrams and wrote MySQL Workbench scripts focusing on foreign key constraints.</p>
-        </li>
-        <li>
-            <strong>C & Python Applications:</strong>
-            <p>Developed various scripts focusing on standard input/output functions and list operations.</p>
-        </li>
-    </ul>
+        <section id="about">
+            <h2>About Me</h2>
 
-    <h2>Contact Me</h2>
-    <ul>
-        <li>Email: your.email@example.com</li>
-        <li>Website: <a href="https://www.dipenthapa7.com.np/">www.dipenthapa7.com.np</a></li>
-    </ul>
+            <img src="images/image.jpeg"
+                 alt="Profile photograph of Dipen Thapa"
+                 width="200">
+
+            <p>
+                My name is Dipen Thapa. I am a BIT student from
+                Bhaktapur, Nepal. I am interested in technology,
+                programming, data science, and machine learning.
+            </p>
+
+            <p>
+                I enjoy learning new technologies, improving my
+                programming skills, and working on different
+                computer-related projects.
+            </p>
+        </section>
+
+
+        <section id="education">
+            <h2>Education</h2>
+
+            <table>
+                <caption>My Educational Background</caption>
+
+                <thead>
+                    <tr>
+                        <th scope="col">S.N.</th>
+                        <th scope="col">Level</th>
+                        <th scope="col">Institution</th>
+                        <th scope="col">GPA</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Secondary</td>
+                        <td>Modern School</td>
+                        <td>3.10</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Higher Secondary</td>
+                        <td>Modern College</td>
+                        <td>3.28</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Undergraduate (BIT)</td>
+                        <td>MIT</td>
+                        <td>Running</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
+
+            <dl>
+                <dt>Python</dt>
+                <dd>
+                    Used for programming, data analysis, and basic
+                    machine learning applications.
+                </dd>
+
+                <dt>HTML5</dt>
+                <dd>
+                    Used for creating structured and semantic web pages.
+                </dd>
+
+                <dt>CSS</dt>
+                <dd>
+                    Used for designing and improving the appearance of websites.
+                </dd>
+
+                <dt>JavaScript</dt>
+                <dd>
+                    Used for adding interaction and functionality to web pages.
+                </dd>
+
+                <dt>React</dt>
+                <dd>
+                    Used for developing interactive user interfaces.
+                </dd>
+
+                <dt>Data Science</dt>
+                <dd>
+                    Used for analyzing and understanding data.
+                </dd>
+
+                <dt>Machine Learning</dt>
+                <dd>
+                    Used for studying how computers can learn patterns from data.
+                </dd>
+            </dl>
+        </section>
+
+
+        <section id="projects">
+            <h2>My Projects</h2>
+
+            <article>
+                <h3>Personal Portfolio Website</h3>
+
+                <p>
+                    This personal portfolio website presents my biography,
+                    education, technical skills, projects, and contact
+                    information. The project uses semantic HTML5 elements
+                    to create a clear and organized webpage structure.
+                </p>
+
+                <p>
+                    <a href="https://github.com/dipenthapa7/MyPortfolio">
+                        View Portfolio Project on GitHub
+                    </a>
+                </p>
+            </article>
+
+
+            <article>
+                <h3>Data Analysis Project</h3>
+
+                <p>
+                    This project demonstrates my interest in programming
+                    and data analysis. It focuses on organizing data,
+                    analyzing information, and applying programming
+                    concepts to solve problems.
+                </p>
+
+                <p>
+                    <a href="https://github.com/dipenthapa7/PROJECT-REPO-NAME">
+                        View Data Analysis Project on GitHub
+                    </a>
+                </p>
+            </article>
+        </section>
+
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+
+            <p>
+                Email:
+                <a href="mailto:tretime865@gmail.com">
+                    tretime865@gmail.com
+                </a>
+            </p>
+
+            <form action="#" method="post">
+
+                <p>
+                    <label for="name">Name:</label>
+                    <input type="text"
+                           id="name"
+                           name="name"
+                           required>
+                </p>
+
+                <p>
+                    <label for="email">Email:</label>
+                    <input type="email"
+                           id="email"
+                           name="email"
+                           required>
+                </p>
+
+                <p>
+                    <label for="message">Message:</label>
+                    <textarea id="message"
+                              name="message"
+                              rows="5"
+                              cols="30"
+                              required></textarea>
+                </p>
+
+                <button type="submit">Submit</button>
+
+            </form>
+
+            <p>
+                <a href="https://github.com/dipenthapa7">
+                    My GitHub Profile
+                </a>
+            </p>
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>&copy; 2026 Dipen Thapa. All rights reserved.</p>
+    </footer>
 
 </body>
+
 </html>
