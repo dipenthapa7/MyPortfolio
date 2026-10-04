@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Dipen Thapa | Personal Portfolio</title>
 
     <link rel="stylesheet" href="css/style.css">
@@ -11,11 +12,28 @@
 
 <body>
 
-<header>
-    <h1>Dipen Thapa</h1>
+<header id="home">
+
+    <div class="header-top">
+
+        <h1>Dipen Thapa</h1>
+
+        <form class="search-form" action="#" method="get" role="search">
+            <input
+                type="search"
+                name="search"
+                placeholder="Search..."
+                aria-label="Search">
+
+            <button type="submit">Search</button>
+        </form>
+
+    </div>
+
 
     <nav>
         <ul>
+            <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#education">Education</a></li>
             <li><a href="#skills">Skills</a></li>
@@ -23,11 +41,14 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
+
 </header>
+
 
 <main>
 
     <!-- ABOUT SECTION -->
+
     <section id="about">
 
         <div class="about-container">
@@ -50,10 +71,12 @@
 
             </div>
 
+
             <div class="about-image">
 
-                <img src="images/image.jpeg"
-                     alt="Profile photograph of Dipen Thapa">
+                <img
+                    src="images/image.jpeg"
+                    alt="Profile photograph of Dipen Thapa">
 
             </div>
 
@@ -63,6 +86,7 @@
 
 
     <!-- EDUCATION SECTION -->
+
     <section id="education">
 
         <h2>Education</h2>
@@ -74,12 +98,14 @@
             </caption>
 
             <thead>
+
                 <tr>
                     <th scope="col">S.N.</th>
                     <th scope="col">Level</th>
                     <th scope="col">Institution</th>
                     <th scope="col">GPA</th>
                 </tr>
+
             </thead>
 
             <tbody>
@@ -113,6 +139,7 @@
 
 
     <!-- SKILLS SECTION -->
+
     <section id="skills">
 
         <h2>Technical Skills</h2>
@@ -120,25 +147,39 @@
         <dl>
 
             <dt><strong>Python</strong></dt>
-            <dd>Programming, data analysis, and machine learning.</dd>
+            <dd>
+                Programming, data analysis, and machine learning.
+            </dd>
 
             <dt><strong>HTML5</strong></dt>
-            <dd>Creating structured and semantic web pages.</dd>
+            <dd>
+                Creating structured and semantic web pages.
+            </dd>
 
             <dt><strong>CSS</strong></dt>
-            <dd>Designing the appearance of websites.</dd>
+            <dd>
+                Designing responsive and visually attractive websites.
+            </dd>
 
             <dt><strong>JavaScript</strong></dt>
-            <dd>Adding interaction to web pages.</dd>
+            <dd>
+                Adding interaction and functionality to web pages.
+            </dd>
 
             <dt><strong>React</strong></dt>
-            <dd>Developing interactive user interfaces.</dd>
+            <dd>
+                Developing interactive user interfaces.
+            </dd>
 
             <dt><strong>Data Science</strong></dt>
-            <dd>Analyzing and understanding data.</dd>
+            <dd>
+                Analyzing and understanding data.
+            </dd>
 
             <dt><strong>Machine Learning</strong></dt>
-            <dd>Learning patterns from data.</dd>
+            <dd>
+                Learning and identifying patterns from data.
+            </dd>
 
         </dl>
 
@@ -146,9 +187,11 @@
 
 
     <!-- PROJECTS SECTION -->
+
     <section id="projects">
 
         <h2>My Projects</h2>
+
 
         <article>
 
@@ -157,14 +200,14 @@
             <p>
                 A personal portfolio website developed using HTML5 and CSS.
                 It presents my personal information, education, technical
-                skills, projects, and contact details in a simple and
-                organized layout.
+                skills, projects, and contact details in a responsive layout.
             </p>
 
             <p>
-                <a href="https://github.com/dipenthapa7/MyPortfolio"
-                   target="_blank"
-                   rel="noopener noreferrer">
+                <a
+                    href="https://github.com/dipenthapa7/MyPortfolio"
+                    target="_blank"
+                    rel="noopener noreferrer">
                     View Project on GitHub
                 </a>
             </p>
@@ -183,9 +226,10 @@
             </p>
 
             <p>
-                <a href="https://github.com/dipenthapa7"
-                   target="_blank"
-                   rel="noopener noreferrer">
+                <a
+                    href="https://github.com/dipenthapa7"
+                    target="_blank"
+                    rel="noopener noreferrer">
                     View Project on GitHub
                 </a>
             </p>
@@ -200,14 +244,15 @@
             <p>
                 A beginner-level data analysis and machine learning project
                 developed using Python. The project focuses on analyzing
-                data, finding useful patterns, and understanding basic
+                data, identifying useful patterns, and understanding basic
                 machine learning concepts.
             </p>
 
             <p>
-                <a href="https://github.com/dipenthapa7"
-                   target="_blank"
-                   rel="noopener noreferrer">
+                <a
+                    href="https://github.com/dipenthapa7"
+                    target="_blank"
+                    rel="noopener noreferrer">
                     View Project on GitHub
                 </a>
             </p>
@@ -218,64 +263,111 @@
 
 
     <!-- CONTACT SECTION -->
+
     <section id="contact">
 
         <h2>Contact Me</h2>
 
-        <p>
+
+        <div class="contact-email">
+
             Email:
+
             <a href="mailto:tretime865@gmail.com">
                 tretime865@gmail.com
             </a>
-        </p>
 
-        <form action="#" method="post">
+        </div>
 
-            <p>
-                <label for="name">Name:</label>
 
-                <input type="text"
-                       id="name"
-                       name="name"
-                       placeholder="Enter your name"
-                       required>
-            </p>
+        <div class="social-links">
 
-            <p>
-                <label for="email">Email:</label>
-
-                <input type="email"
-                       id="email"
-                       name="email"
-                       placeholder="Enter your email"
-                       required>
-            </p>
-
-            <p>
-                <label for="message">Message:</label>
-
-                <textarea id="message"
-                          name="message"
-                          rows="5"
-                          placeholder="Write your message"
-                          required></textarea>
-            </p>
-
-            <button type="submit">
-                Submit
-            </button>
-
-        </form>
-
-        <p class="github-profile">
-
-            <a href="https://github.com/dipenthapa7"
-               target="_blank"
-               rel="noopener noreferrer">
-                Visit My GitHub Profile
+            <a
+                href="https://www.linkedin.com/in/dipen-thapa-34073432b/"
+                target="_blank"
+                rel="noopener noreferrer">
+                LinkedIn
             </a>
 
-        </p>
+
+            <a
+                href="https://github.com/dipenthapa7"
+                target="_blank"
+                rel="noopener noreferrer">
+                GitHub
+            </a>
+
+
+            <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer">
+                Instagram
+            </a>
+
+        </div>
+
+
+        <div class="contact-form-box">
+
+            <h3>Send Me a Message</h3>
+
+            <form class="contact-form" action="#" method="post">
+
+                <p>
+
+                    <label for="email">
+                        Email:
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required>
+
+                </p>
+
+
+                <p>
+
+                    <label for="phone">
+                        Phone Number:
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Enter your phone number">
+
+                </p>
+
+
+                <p>
+
+                    <label for="message">
+                        Message:
+                    </label>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="5"
+                        placeholder="Write your message..."
+                        required></textarea>
+
+                </p>
+
+
+                <button type="submit">
+                    Submit
+                </button>
+
+            </form>
+
+        </div>
 
     </section>
 
@@ -283,7 +375,11 @@
 
 
 <footer>
-    <p>&copy; 2026 Dipen Thapa. All rights reserved.</p>
+
+    <p>
+        &copy; 2026 Dipen Thapa. All rights reserved.
+    </p>
+
 </footer>
 
 </body>
