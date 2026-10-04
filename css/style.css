@@ -67,6 +67,7 @@ header h1 {
     padding: 10px 12px;
 
     border: 2px solid white;
+
     border-radius: 6px 0 0 6px;
 
     font-size: 16px;
@@ -87,6 +88,8 @@ header h1 {
     font-size: 16px;
 
     cursor: pointer;
+
+    transition: 0.3s;
 }
 
 .search-form button:hover {
@@ -130,6 +133,7 @@ nav a {
 
 nav a:hover {
     background-color: white;
+
     color: #1e3a5f;
 }
 
@@ -140,6 +144,7 @@ nav a:hover {
 
 main {
     width: 90%;
+
     max-width: 1100px;
 
     margin: 35px auto;
@@ -229,7 +234,7 @@ section h2 {
 
 
 /* =============================
-   EDUCATION
+   EDUCATION TABLE
 ============================= */
 
 table {
@@ -361,6 +366,8 @@ article a:hover {
     color: #2468a2;
 
     font-weight: bold;
+
+    text-decoration: underline;
 }
 
 
@@ -379,13 +386,19 @@ article a:hover {
 }
 
 .social-links a {
-    display: inline-block;
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
 
     border: 1px solid #4f86c6;
 
     border-radius: 6px;
 
-    padding: 12px 20px;
+    padding: 10px 16px;
+
+    background-color: white;
 
     color: #1e3a5f;
 
@@ -394,6 +407,15 @@ article a:hover {
     font-weight: bold;
 
     transition: 0.3s;
+}
+
+.social-links a img {
+    width: 32px;
+    height: 32px;
+
+    object-fit: contain;
+
+    border-radius: 4px;
 }
 
 .social-links a:hover {
@@ -454,9 +476,9 @@ article a:hover {
 
     border-radius: 6px;
 
-    font-family: Arial, Helvetica, sans-serif;
-
     font-size: 16px;
+
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .contact-form input:focus,
@@ -475,7 +497,7 @@ article a:hover {
 
 
 /* =============================
-   BUTTON
+   CONTACT BUTTON
 ============================= */
 
 .contact-form button {
@@ -553,6 +575,8 @@ footer p {
 
 @media screen and (max-width: 750px) {
 
+    /* HEADER */
+
     .header-top {
         flex-direction: column;
 
@@ -570,6 +594,7 @@ footer p {
 
     .search-form {
         width: 100%;
+
         max-width: 350px;
     }
 
@@ -644,11 +669,13 @@ footer p {
     }
 
     .social-links a {
-        text-align: center;
+        width: 100%;
+
+        justify-content: center;
     }
 
 
-    /* CONTACT */
+    /* CONTACT FORM */
 
     .contact-form-box {
         padding: 20px;
