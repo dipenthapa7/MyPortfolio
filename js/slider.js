@@ -5,128 +5,92 @@ class ImageSlider {
         this.slider =
             document.querySelector(selector);
 
-        if (!this.slider) {
-            return;
-        }
-
-
         this.track =
             this.slider.querySelector(".slider-track");
-
-
-        this.originalSlides = Array.from(
-            this.track.querySelectorAll(".slide")
-        );
-
-
-        this.prevButton =
-            this.slider.querySelector(".prev");
-
-
-        this.nextButton =
-            this.slider.querySelector(".next");
-
-
-        this.dotsContainer =
-            this.slider.querySelector(".dots");
-
-
-        this.currentIndex = 1;
-
-        this.isMoving = false;
-
-        this.autoSlide = null;
-
-        this.isHovering = false;
-
-
-        this.createClones();
-
 
         this.slides = Array.from(
             this.track.querySelectorAll(".slide")
         );
 
+        this.prevBtn =
+            this.slider.querySelector(".prev");
+
+        this.nextBtn =
+            this.slider.querySelector(".next");
+
+        this.dotsBox =
+            this.slider.querySelector(".dots");
+
+
+        this.index = 1;
+
+        this.isMoving = false;
+
+        this.isHovering = false;
+
+        this.timer = null;
+
+
+        this.createClones();
 
         this.createDots();
 
         this.bindEvents();
 
-        this.moveWithoutAnimation();
+
+        this.move(false);
 
         this.startAutoSlide();
     }
 
 
-    /* =========================
-       CREATE CLONES
-    ========================= */
+    /* CREATE CLONES FOR INFINITE LOOP */
 
     createClones() {
 
-        const firstClone =
-            this.originalSlides[0].cloneNode(true);
+        const first =
+            this.slides[0].cloneNode(true);
 
 
-        const lastClone =
-            this.originalSlides[
-                this.originalSlides.length - 1
+        const last =
+            this.slides[
+                this.slides.length - 1
             ].cloneNode(true);
 
 
-        firstClone.classList.add("clone");
-
-        lastClone.classList.add("clone");
-
-
-        firstClone.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-
-        lastClone.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-
-        this.track.appendChild(
-            firstClone
-        );
+        this.track.appendChild(first);
 
 
         this.track.insertBefore(
-            lastClone,
-            this.originalSlides[0]
+            last,
+            this.slides[0]
         );
 
+
+        this.allSlides =
+            this.track.querySelectorAll(".slide");
     }
 
 
-    /* =========================
-       CREATE INDICATOR DOTS
-    ========================= */
+    /* CREATE INDICATOR DOTS */
 
     createDots() {
 
-        this.originalSlides.forEach(
-            (slide, index) => {
-
+        this.slides.forEach(
+            (slide, i) => {
 
                 const dot =
                     document.createElement("button");
 
 
-                dot.classList.add("dot");
-
+                dot.className = "dot";
 
                 dot.type = "button";
 
 
                 dot.setAttribute(
                     "aria-label",
-                    `Go to slide ${index + 1}`
+                    `Go to slide ${i + 1}`
                 );
 
 
@@ -134,41 +98,33 @@ class ImageSlider {
                     "click",
                     () => {
 
-                        this.goToSlide(index);
+                        this.goToSlide(i);
 
                         this.restartAutoSlide();
+
                     }
                 );
 
 
-                this.dotsContainer.appendChild(
-                    dot
-                );
+                this.dotsBox.appendChild(dot);
 
             }
         );
 
 
         this.dots =
-            this.dotsContainer
-                .querySelectorAll(".dot");
+            this.dotsBox.querySelectorAll(".dot");
 
 
         this.updateDots();
-
     }
 
 
-    /* =========================
-       EVENT ARCHITECTURE
-    ========================= */
+    /* EVENT LISTENERS */
 
     bindEvents() {
 
-
-        /* NEXT BUTTON */
-
-        this.nextButton.addEventListener(
+        this.nextBtn.addEventListener(
             "click",
             () => {
 
@@ -180,9 +136,7 @@ class ImageSlider {
         );
 
 
-        /* PREVIOUS BUTTON */
-
-        this.prevButton.addEventListener(
+        this.prevBtn.addEventListener(
             "click",
             () => {
 
@@ -194,20 +148,11 @@ class ImageSlider {
         );
 
 
-        /* CHECK LOOP AFTER ANIMATION */
-
         this.track.addEventListener(
             "transitionend",
-            (event) => {
+            () => {
 
-                if (
-                    event.propertyName ===
-                    "transform"
-                ) {
-
-                    this.checkBoundary();
-
-                }
+                this.checkBoundary();
 
             }
         );
@@ -239,29 +184,25 @@ class ImageSlider {
 
             }
         );
-
     }
 
 
-    /* =========================
-       SLIDING LAYOUT MATH
-    ========================= */
+    /* MOVE SLIDER */
 
-    updatePosition() {
+    move(animate = true) {
 
-        const offset =
-            this.currentIndex * 100;
+        this.track.style.transition =
+            animate
+                ? "transform 0.5s ease-in-out"
+                : "none";
 
 
         this.track.style.transform =
-            `translateX(-${offset}%)`;
-
+            `translateX(-${this.index * 100}%)`;
     }
 
 
-    /* =========================
-       NEXT SLIDE
-    ========================= */
+    /* NEXT SLIDE */
 
     nextSlide() {
 
@@ -272,24 +213,16 @@ class ImageSlider {
 
         this.isMoving = true;
 
-
-        this.currentIndex++;
-
-
-        this.track.style.transition =
-            "transform 0.5s ease-in-out";
+        this.index++;
 
 
-        this.updatePosition();
+        this.move();
 
         this.updateDots();
-
     }
 
 
-    /* =========================
-       PREVIOUS SLIDE
-    ========================= */
+    /* PREVIOUS SLIDE */
 
     prevSlide() {
 
@@ -300,26 +233,18 @@ class ImageSlider {
 
         this.isMoving = true;
 
-
-        this.currentIndex--;
-
-
-        this.track.style.transition =
-            "transform 0.5s ease-in-out";
+        this.index--;
 
 
-        this.updatePosition();
+        this.move();
 
         this.updateDots();
-
     }
 
 
-    /* =========================
-       CLICKABLE DOT
-    ========================= */
+    /* CLICK INDICATOR DOT */
 
-    goToSlide(index) {
+    goToSlide(i) {
 
         if (this.isMoving) {
             return;
@@ -328,54 +253,38 @@ class ImageSlider {
 
         this.isMoving = true;
 
-
-        this.currentIndex =
-            index + 1;
+        this.index = i + 1;
 
 
-        this.track.style.transition =
-            "transform 0.5s ease-in-out";
-
-
-        this.updatePosition();
+        this.move();
 
         this.updateDots();
-
     }
 
 
-    /* =========================
-       SEAMLESS INFINITE LOOP
-    ========================= */
+    /* INFINITE LOOP */
 
     checkBoundary() {
 
+        if (this.index === 0) {
 
-        /* BEFORE FIRST REAL SLIDE */
-
-        if (this.currentIndex === 0) {
-
-            this.currentIndex =
-                this.originalSlides.length;
+            this.index =
+                this.slides.length;
 
 
-            this.moveWithoutAnimation();
-
+            this.move(false);
         }
 
 
-        /* AFTER LAST REAL SLIDE */
-
         if (
-            this.currentIndex ===
-            this.slides.length - 1
+            this.index ===
+            this.allSlides.length - 1
         ) {
 
-            this.currentIndex = 1;
+            this.index = 1;
 
 
-            this.moveWithoutAnimation();
-
+            this.move(false);
         }
 
 
@@ -383,151 +292,91 @@ class ImageSlider {
 
 
         this.updateDots();
-
     }
 
 
-    /* =========================
-       MOVE WITHOUT TRANSITION
-    ========================= */
-
-    moveWithoutAnimation() {
-
-        this.track.style.transition =
-            "none";
-
-
-        this.updatePosition();
-
-    }
-
-
-    /* =========================
-       ACTIVE DOT STATE
-    ========================= */
+    /* UPDATE ACTIVE DOT */
 
     updateDots() {
 
-        if (!this.dots) {
-            return;
-        }
+        let active =
+            this.index - 1;
 
 
-        let dotIndex =
-            this.currentIndex - 1;
+        if (active < 0) {
 
-
-        if (dotIndex < 0) {
-
-            dotIndex =
-                this.originalSlides.length - 1;
-
+            active =
+                this.slides.length - 1;
         }
 
 
         if (
-            dotIndex >=
-            this.originalSlides.length
+            active >=
+            this.slides.length
         ) {
 
-            dotIndex = 0;
-
+            active = 0;
         }
 
 
         this.dots.forEach(
-            (dot, index) => {
-
-                const isActive =
-                    index === dotIndex;
-
+            (dot, i) => {
 
                 dot.classList.toggle(
                     "active",
-                    isActive
-                );
-
-
-                dot.setAttribute(
-                    "aria-current",
-                    isActive ? "true" : "false"
+                    i === active
                 );
 
             }
         );
-
     }
 
 
-    /* =========================
-       AUTO SLIDE
-    ========================= */
+    /* AUTO SLIDE */
 
     startAutoSlide() {
 
         this.stopAutoSlide();
 
 
-        if (this.isHovering) {
-            return;
+        if (!this.isHovering) {
+
+            this.timer =
+                setInterval(
+                    () => this.nextSlide(),
+                    5000
+                );
         }
-
-
-        this.autoSlide =
-            setInterval(
-                () => {
-
-                    this.nextSlide();
-
-                },
-                5000
-            );
-
     }
 
 
-    /* =========================
-       STOP AUTO SLIDE
-    ========================= */
+    /* STOP AUTO SLIDE */
 
     stopAutoSlide() {
 
-        if (this.autoSlide) {
-
-            clearInterval(
-                this.autoSlide
-            );
+        clearInterval(
+            this.timer
+        );
 
 
-            this.autoSlide = null;
-
-        }
-
+        this.timer = null;
     }
 
 
-    /* =========================
-       RESTART AFTER USER ACTION
-    ========================= */
+    /* RESTART AUTO SLIDE */
 
     restartAutoSlide() {
-
-        this.stopAutoSlide();
-
 
         if (!this.isHovering) {
 
             this.startAutoSlide();
 
         }
-
     }
 
 }
 
 
-/* =========================
-   INITIALIZE SLIDER
-========================= */
+/* START SLIDER */
 
 new ImageSlider(".image-slider");
